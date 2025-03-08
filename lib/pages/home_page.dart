@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   UserTile _userListItem(Map<String, dynamic> userData, BuildContext context) {
+    final String receiverID = userData['uid'];
     final String receiverEmail = userData['email'];
     final String? receiverAvatar = userData['avatarUrl'];
 
@@ -85,6 +86,7 @@ class _HomePageState extends State<HomePage> {
           MaterialPageRoute(
             builder: (context) => ChatPage(
               receiverEmail: receiverEmail,
+              receiverID: receiverID,
               receiverAvatar: receiverAvatar,
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -59,7 +60,7 @@ class AuthService {
     }
   }
 
-// SignIn with existing account
+// Sign in with existing account
   Future<void> signInWithEmailPassword(email, pass) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: pass);
@@ -73,7 +74,9 @@ class AuthService {
   }
 
   Future<void> signOut() async {
-    await _auth.signOut();
+    await _auth.signOut().then(
+          (e) => print('User signed out'),
+        );
   }
 
   Future<void> addUserToFirestore(

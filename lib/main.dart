@@ -1,4 +1,5 @@
 import 'package:chat_app/pages/home_page.dart';
+import 'package:chat_app/pages/login_page.dart';
 import 'package:chat_app/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/auth.stream.dart';
@@ -34,6 +35,9 @@ class MainApp extends StatelessWidget {
       routes: {
         '/chats': (context) => HomePage(), // also the home page
         '/settings': (context) => SettingsPage(),
+        '/login': (context) => LoginPage(
+              onToggle: () {},
+            ),
       },
     );
   }
