@@ -1,13 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/services/db.service.dart';
 import 'package:chat_app/widgets/custom_avatar.dart';
 import 'package:chat_app/widgets/custom_drawer.dart';
 import 'package:chat_app/widgets/new_chat_btn.dart';
 import 'package:chat_app/widgets/user_tile.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.service.dart';
-import 'package:chat_app/widgets/drawer_btn.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +48,19 @@ class _HomePageState extends State<HomePage> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text('Loading...');
+          return Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.5),
+                ),
+              ],
+            ),
+          );
         }
 
         // Ensure snapshot.data is not null
@@ -88,6 +98,7 @@ class _HomePageState extends State<HomePage> {
               receiverEmail: receiverEmail,
               receiverID: receiverID,
               receiverAvatar: receiverAvatar,
+              senderAvatar: userAvatar,
             ),
           ),
         );

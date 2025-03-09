@@ -1,14 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.service.dart';
 import 'package:chat_app/services/db.service.dart';
 import 'package:chat_app/widgets/custom_avatar.dart';
 import 'package:chat_app/widgets/custom_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
   final String receiverID;
   final String receiverEmail;
   final String? receiverAvatar;
+  final String? senderAvatar;
 
   final TextEditingController _messageController = TextEditingController();
 
@@ -20,6 +21,7 @@ class ChatPage extends StatelessWidget {
     required this.receiverEmail,
     required this.receiverAvatar,
     required this.receiverID,
+    this.senderAvatar,
   });
 
   void sendMessage() async {
@@ -92,13 +94,26 @@ class ChatPage extends StatelessWidget {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text('loading..');
+          return Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.5),
+                ),
+              ],
+            ),
+          );
         }
 
         return ListView(
+          padding: EdgeInsets.only(bottom: 20),
           children: snapshot.data!.docs
               .map<Widget>(
-                (doc) => _buildMessageItem(doc),
+                (doc) => _buildMessageItem(doc, context),
               )
               .toList(),
         );
@@ -106,10 +121,62 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  Widget _buildMessageItem(DocumentSnapshot doc) {
+  Widget _buildMessageItem(DocumentSnapshot doc, BuildContext context) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-    return Text(data['text']);
+    // for sent messages
+    if (data['senderID'] == _auth.currentUser!.uid) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Flexible(
+            child: Container(
+              margin: EdgeInsets.only(bottom: 10, top: 10, right: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.1),
+                ),
+                borderRadius: BorderRadius.circular(10),
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Text(data['text']),
+            ),
+          ),
+          CustomAvatar(
+            avatarUrl: senderAvatar,
+          ),
+        ],
+      );
+    }
+
+    return Row(
+      children: [
+        CustomAvatar(
+          avatarUrl: receiverAvatar,
+        ),
+        Flexible(
+          child: Container(
+            margin: EdgeInsets.only(bottom: 10, top: 10, left: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.1),
+              ),
+              borderRadius: BorderRadius.circular(10),
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            child: Text(data['text']),
+          ),
+        )
+      ],
+    );
   }
 
   AppBar _chatAppBar(BuildContext context) {
