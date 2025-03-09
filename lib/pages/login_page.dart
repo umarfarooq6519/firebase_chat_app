@@ -55,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                     fontSize: 32,
                     height: 0,
+                    fontFamily: 'Clash Display',
                     fontWeight: FontWeight.w600,
                   ),
                 ),

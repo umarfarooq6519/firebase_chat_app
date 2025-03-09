@@ -203,6 +203,7 @@ class ChatPage extends StatelessWidget {
         receiverEmail,
         style: TextStyle(
           fontSize: 16,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

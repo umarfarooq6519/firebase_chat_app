@@ -55,6 +55,7 @@ class _SignupPageState extends State<SignupPage> {
                   "Create an account",
                   style: TextStyle(
                     fontSize: 32,
+                    fontFamily: 'Clash Display',
                     height: 0,
                     fontWeight: FontWeight.w600,
                   ),

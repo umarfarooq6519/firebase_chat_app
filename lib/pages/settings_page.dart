@@ -7,7 +7,14 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(
+          'SETTINGS',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Clash Display',
+          ),
+        ),
         centerTitle: true,
       ),
     );

@@ -22,7 +22,6 @@ class DrawerBtn extends StatelessWidget {
         onPressed: onTap,
         style: ButtonStyle(
           alignment: Alignment.centerLeft,
-          // backgroundColor: WidgetStatePropertyAll(Colors.amber),
         ),
         label: Padding(
           padding: const EdgeInsets.only(left: 10),
@@ -32,9 +31,10 @@ class DrawerBtn extends StatelessWidget {
               color: isSignOutBtn
                   ? Theme.of(context).colorScheme.error
                   : Theme.of(context).colorScheme.onSurface,
-              fontWeight: FontWeight.w400,
               fontSize: 18,
-              letterSpacing: 3,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w400,
+              fontFamily: 'Clash Display',
             ),
           ),
         ),

@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
       appBar: _appBar(),
       drawer: CustomDrawer(handleSignOut: _auth.signOut),
       body: _displayUsersList(),
-      floatingActionButton: NewChatBtn(),
     );
   }
 
@@ -109,9 +108,10 @@ class _HomePageState extends State<HomePage> {
   AppBar _appBar() {
     return AppBar(
       title: Text(
-        'Chats',
+        'CHATS',
         style: TextStyle(
           fontSize: 20,
+          fontFamily: 'Clash Display',
           fontWeight: FontWeight.w600,
         ),
       ),

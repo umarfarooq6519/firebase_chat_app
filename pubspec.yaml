@@ -28,3 +28,30 @@ flutter:
     - .env
     - assets/icons/
     - assets/fonts/
+
+  fonts:
+    - family: General Sans
+      fonts:
+        - asset: assets/fonts/GeneralSans/GeneralSans-Light.otf
+          weight: 300
+        - asset: assets/fonts/GeneralSans/GeneralSans-Regular.otf
+          weight: 400
+        - asset: assets/fonts/GeneralSans/GeneralSans-Medium.otf
+          weight: 500
+        - asset: assets/fonts/GeneralSans/GeneralSans-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/GeneralSans/GeneralSans-Bold.otf
+          weight: 700
+
+    - family: Clash Display
+      fonts:
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Light.otf
+          weight: 300
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Regular.otf
+          weight: 400
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Medium.otf
+          weight: 500
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/ClashDisplay/ClashDisplay-Bold.otf
+          weight: 700
