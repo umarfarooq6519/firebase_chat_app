@@ -109,6 +109,10 @@ class ChatPage extends StatelessWidget {
           );
         }
 
+        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return Center(child: Text('No messages 😔'));
+        }
+
         return ListView(
           padding: EdgeInsets.only(bottom: 20),
           children: snapshot.data!.docs

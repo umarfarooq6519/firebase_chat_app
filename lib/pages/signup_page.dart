@@ -4,6 +4,7 @@ import 'package:chat_app/widgets/google_btn.dart';
 import 'package:chat_app/widgets/custom_input_field.dart';
 import 'package:chat_app/widgets/primary_btn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lottie/lottie.dart';
 
 class SignupPage extends StatefulWidget {
   final VoidCallback onToggle;
@@ -51,6 +52,12 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Lottie.asset(
+                  'assets/animations/chat_app_logo.json',
+                  width: 250,
+                  height: 250,
+                ),
+                SizedBox(height: 20),
                 Text(
                   "Create an account",
                   style: TextStyle(
@@ -63,7 +70,7 @@ class _SignupPageState extends State<SignupPage> {
                 SizedBox(height: 20),
                 CustomInputField(
                     controller: _emailController,
-                    hintText: 'E-mail',
+                    hintText: 'user@example.com',
                     obscureText: false),
                 SizedBox(height: 10),
                 CustomInputField(
@@ -107,20 +114,6 @@ class _SignupPageState extends State<SignupPage> {
             ),
           ),
         ),
-      ),
-      floatingActionButton: _floatingBtn(context),
-    );
-  }
-
-  FloatingActionButton _floatingBtn(BuildContext context) {
-    return FloatingActionButton.small(
-      elevation: 3,
-      backgroundColor: Theme.of(context).colorScheme.onSurface,
-      onPressed: () {},
-      shape: CircleBorder(),
-      child: Icon(
-        Icons.question_mark,
-        color: Theme.of(context).colorScheme.surface,
       ),
     );
   }

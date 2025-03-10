@@ -4,6 +4,7 @@ import 'package:chat_app/widgets/custom_input_field.dart';
 import 'package:chat_app/widgets/primary_btn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onToggle;
@@ -50,6 +51,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Lottie.asset(
+                  'assets/animations/chat_app_logo.json',
+                  width: 250,
+                  height: 250,
+                ),
+                SizedBox(height: 20),
                 Text(
                   "Welcome Back 👋",
                   style: TextStyle(
@@ -106,20 +113,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-      ),
-      floatingActionButton: _floatingBtn(context),
-    );
-  }
-
-  FloatingActionButton _floatingBtn(BuildContext context) {
-    return FloatingActionButton.small(
-      elevation: 3,
-      backgroundColor: Theme.of(context).colorScheme.onSurface,
-      onPressed: () {},
-      shape: CircleBorder(),
-      child: Icon(
-        Icons.question_mark,
-        color: Theme.of(context).colorScheme.surface,
       ),
     );
   }

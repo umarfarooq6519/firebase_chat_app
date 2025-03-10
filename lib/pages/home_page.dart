@@ -3,7 +3,6 @@ import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/services/db.service.dart';
 import 'package:chat_app/widgets/custom_avatar.dart';
 import 'package:chat_app/widgets/custom_drawer.dart';
-import 'package:chat_app/widgets/new_chat_btn.dart';
 import 'package:chat_app/widgets/user_tile.dart';
 import 'package:chat_app/services/auth.service.dart';
 
