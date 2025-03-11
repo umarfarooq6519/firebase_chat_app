@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PrimaryBtn extends StatelessWidget {
-  PrimaryBtn({super.key, required this.printEmail, required this.text});
+  const PrimaryBtn({super.key, required this.printEmail, required this.text});
 
-  dynamic printEmail;
+  final dynamic printEmail;
   final String text;
 
   @override
