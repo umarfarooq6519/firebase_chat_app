@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   StreamBuilder _displayUsersList() {
     // fetch and display users
     return StreamBuilder(
-      stream: _db.getUserStream(),
+      stream: _db.getUnblockedUsersStream(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Text('error');
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> {
         style: TextStyle(
           fontSize: 20,
           fontFamily: 'Clash Display',
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
       ),
       centerTitle: true,

@@ -30,7 +30,6 @@ flutter:
     - assets/icons/
     - assets/fonts/
     - assets/animations/
-    - assets/images/
 
   fonts:
     - family: General Sans

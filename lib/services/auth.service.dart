@@ -12,22 +12,30 @@ class AuthService {
 
   Future<void> signInWithGoogle() async {
     try {
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignIn googleSignIn = GoogleSignIn();
 
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
+      // Ensure previous sessions are cleared
+      await googleSignIn.signOut();
+
+      final GoogleAuthProvider googleProvider = GoogleAuthProvider();
+      googleProvider.setCustomParameters({'prompt': 'select_account'});
+
+      // Sign in and get user data
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) return; // User canceled login
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
-      // Once signed in, return the UserCredential
       final result = await _auth.signInWithCredential(credential);
 
-      // if not new, skip adding user to firestore
+      // If new user, add to Firestore
       if (result.additionalUserInfo!.isNewUser) {
         addUserToFirestore(
             result.user!.uid, result.user!.email, result.user!.photoURL);
@@ -73,9 +81,7 @@ class AuthService {
   }
 
   Future<void> signOut() async {
-    await _auth.signOut().then(
-          (e) => print('User signed out'),
-        );
+    await _auth.signOut();
   }
 
   Future<void> addUserToFirestore(

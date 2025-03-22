@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:chat_app/services/auth.service.dart';
 import 'package:chat_app/widgets/google_btn.dart';
 import 'package:chat_app/widgets/custom_input_field.dart';
 import 'package:chat_app/widgets/primary_btn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onToggle;

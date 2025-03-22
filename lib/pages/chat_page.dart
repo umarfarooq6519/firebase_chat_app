@@ -1,3 +1,4 @@
+import 'package:chat_app/models/message.model.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.service.dart';
 import 'package:chat_app/services/db.service.dart';
@@ -125,61 +126,123 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  Widget _buildMessageItem(DocumentSnapshot doc, BuildContext context) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+  // show options
+  void _showOptions(BuildContext context, String messageID, String userID) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              // block button
+              ListTile(
+                leading: Icon(Icons.block),
+                title: Text('Block'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _blockUser(context, userID);
+                },
+              ),
 
-    // for sent messages
-    if (data['senderID'] == _auth.currentUser!.uid) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+              // cancel button
+              ListTile(
+                leading: Icon(Icons.cancel),
+                title: Text('Cancel'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // block user
+  void _blockUser(BuildContext context, String userID) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Block User'),
+        content: Text('Are you sure you want to block the user?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              _db.blockUser(userID);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('User Blocked'),
+                ),
+              );
+            },
+            child: Text(
+              'Block',
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMessageItem(DocumentSnapshot doc, BuildContext context) {
+    final data = doc.data() as Map<String, dynamic>;
+    final bool isSent = data['senderID'] == _auth.currentUser!.uid;
+
+    return GestureDetector(
+      onLongPress: () {
+        if (!isSent) {
+          _showOptions(context, doc.id, data['senderID']);
+        }
+        // Navigator.pop(context);
+      },
+      child: Row(
+        mainAxisAlignment:
+            isSent ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
+          if (!isSent)
+            CustomAvatar(avatarUrl: receiverAvatar), // Receiver's avatar
+
           Flexible(
             child: Container(
-              margin: EdgeInsets.only(bottom: 10, top: 10, right: 10),
+              margin: EdgeInsets.only(
+                bottom: 10,
+                top: 10,
+                left: isSent ? 0 : 10,
+                right: isSent ? 10 : 0,
+              ),
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSurface
-                      .withValues(alpha: 0.1),
+                  color:
+                      Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
                 ),
                 borderRadius: BorderRadius.circular(10),
-                color: Theme.of(context).colorScheme.primary,
+                color: isSent
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.secondary,
               ),
-              child: Text(data['text']),
+              child: Text(
+                data['text'],
+              ),
             ),
           ),
-          CustomAvatar(
-            avatarUrl: senderAvatar,
-          ),
-        ],
-      );
-    }
 
-    return Row(
-      children: [
-        CustomAvatar(
-          avatarUrl: receiverAvatar,
-        ),
-        Flexible(
-          child: Container(
-            margin: EdgeInsets.only(bottom: 10, top: 10, left: 10),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context)
-                    .colorScheme
-                    .onSurface
-                    .withValues(alpha: 0.1),
-              ),
-              borderRadius: BorderRadius.circular(10),
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            child: Text(data['text']),
-          ),
-        )
-      ],
+          if (isSent) CustomAvatar(avatarUrl: senderAvatar), // Sender's avatar
+        ],
+      ),
     );
   }
 

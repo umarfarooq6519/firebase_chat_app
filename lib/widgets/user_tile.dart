@@ -16,6 +16,7 @@ class UserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Theme.of(context).colorScheme.surface,
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

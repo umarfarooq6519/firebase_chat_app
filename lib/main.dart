@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/blocked_users_page.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/settings_page.dart';
@@ -30,12 +31,14 @@ class MainApp extends StatelessWidget {
           seedColor: Colors.black,
           primary: Color(0xffd0e9bc),
           secondary: Color(0xffFFEDFA),
+          onSurface: Colors.black.withValues(alpha: 0.8),
         ),
       ),
       home: AuthStream(),
       routes: {
-        '/chats': (context) => HomePage(), // also the home page
+        '/chats': (context) => HomePage(),
         '/settings': (context) => SettingsPage(),
+        '/blocked_users': (context) => BlockedUsersPage(),
       },
     );
   }
