@@ -96,8 +96,8 @@ class DatabaseService extends ChangeNotifier {
     });
   }
 
-  // Report users
-  Future<void> reportUser(String msgID, String userID) async {
+  // Report message
+  Future<void> reportMessage(String msgID, String userID) async {
     final currentUser = _auth.currentUser;
 
     final report = {

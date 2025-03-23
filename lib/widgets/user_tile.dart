@@ -1,5 +1,7 @@
+import 'package:chat_app/themes/theme_provider.dart';
 import 'package:chat_app/widgets/custom_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserTile extends StatelessWidget {
   final VoidCallback onTap;
@@ -16,7 +18,8 @@ class UserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      splashColor: Theme.of(context).colorScheme.surface,
+      splashColor: Theme.of(context).colorScheme.surface.withOpacity(0.2),
+      highlightColor: Theme.of(context).colorScheme.surface.withOpacity(0.2),
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -38,6 +41,10 @@ class UserTile extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
+                color: Provider.of<ThemeProvider>(context, listen: false)
+                        .isDarkMode
+                    ? Theme.of(context).colorScheme.surface
+                    : Theme.of(context).colorScheme.onSurface,
                 fontWeight: FontWeight.w500,
               ),
             ),

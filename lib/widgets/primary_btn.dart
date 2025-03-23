@@ -1,4 +1,6 @@
+import 'package:chat_app/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PrimaryBtn extends StatelessWidget {
   const PrimaryBtn({super.key, required this.printEmail, required this.text});
@@ -34,7 +36,10 @@ class PrimaryBtn extends StatelessWidget {
           children: [
             Icon(
               Icons.login,
-              color: Theme.of(context).colorScheme.onSurface,
+              color:
+                  Provider.of<ThemeProvider>(context, listen: false).isDarkMode
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.onSurface,
               size: 24,
             ),
             SizedBox(width: 6),
@@ -42,7 +47,10 @@ class PrimaryBtn extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: 16,
-                color: Theme.of(context).colorScheme.onSurface,
+                color: Provider.of<ThemeProvider>(context, listen: false)
+                        .isDarkMode
+                    ? Theme.of(context).colorScheme.surface
+                    : Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ],

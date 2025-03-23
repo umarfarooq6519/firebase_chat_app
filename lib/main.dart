@@ -1,4 +1,6 @@
+import 'package:chat_app/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:chat_app/pages/blocked_users_page.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/settings_page.dart';
@@ -14,7 +16,10 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
-    const MainApp(),
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MainApp(),
+    ),
   );
 }
 
@@ -25,15 +30,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'General Sans',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.black,
-          primary: Color(0xffd0e9bc),
-          secondary: Color(0xffFFEDFA),
-          onSurface: Colors.black.withValues(alpha: 0.8),
-        ),
-      ),
+      theme: Provider.of<ThemeProvider>(context).themeData,
       home: AuthStream(),
       routes: {
         '/chats': (context) => HomePage(),

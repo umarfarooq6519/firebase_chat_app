@@ -1,9 +1,11 @@
+import 'package:chat_app/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.service.dart';
 import 'package:chat_app/services/db.service.dart';
 import 'package:chat_app/widgets/custom_avatar.dart';
 import 'package:chat_app/widgets/custom_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 class ChatPage extends StatelessWidget {
   final String receiverID;
@@ -77,7 +79,12 @@ class ChatPage extends StatelessWidget {
             ),
           ),
           onPressed: sendMessage,
-          icon: Icon(Icons.arrow_upward),
+          icon: Icon(
+            Icons.arrow_upward,
+            color: Provider.of<ThemeProvider>(context, listen: false).isDarkMode
+                ? Theme.of(context).colorScheme.surface
+                : Theme.of(context).colorScheme.onSurface,
+          ),
         ),
       ],
     );
@@ -187,7 +194,7 @@ class ChatPage extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              _db.reportUser(messageID, userID);
+              _db.reportMessage(messageID, userID);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -282,6 +289,12 @@ class ChatPage extends StatelessWidget {
               ),
               child: Text(
                 data['text'],
+                style: TextStyle(
+                  color: Provider.of<ThemeProvider>(context, listen: false)
+                          .isDarkMode
+                      ? Theme.of(context).colorScheme.surface
+                      : Theme.of(context).colorScheme.onSurface,
+                ),
               ),
             ),
           ),
