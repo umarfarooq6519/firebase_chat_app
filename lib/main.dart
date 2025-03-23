@@ -1,5 +1,5 @@
-import 'package:chat_app/pages/blocked_users_page.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/pages/blocked_users_page.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/settings_page.dart';
 import 'package:chat_app/auth.stream.dart';

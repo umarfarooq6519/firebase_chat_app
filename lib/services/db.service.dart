@@ -101,7 +101,7 @@ class DatabaseService extends ChangeNotifier {
     final currentUser = _auth.currentUser;
 
     final report = {
-      'reportedBy': currentUser,
+      'reportedBy': currentUser!.uid,
       'messageID': msgID,
       'msgOwnerID': userID,
       'timestamp': FieldValue.serverTimestamp(),

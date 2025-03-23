@@ -1,4 +1,3 @@
-import 'package:chat_app/models/message.model.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.service.dart';
 import 'package:chat_app/services/db.service.dart';
@@ -134,6 +133,16 @@ class ChatPage extends StatelessWidget {
         return SafeArea(
           child: Wrap(
             children: [
+              // report button
+              ListTile(
+                leading: Icon(Icons.flag),
+                title: Text('Report'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _reportMessage(context, messageID, userID);
+                },
+              ),
+
               // block button
               ListTile(
                 leading: Icon(Icons.block),
@@ -156,6 +165,43 @@ class ChatPage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  // report message
+  void _reportMessage(BuildContext context, String messageID, String userID) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Report User'),
+        content: Text('Are you sure you want to rpoert the user?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              _db.reportUser(messageID, userID);
+              Navigator.pop(context);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('User Reported'),
+                ),
+              );
+            },
+            child: Text(
+              'Report',
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
