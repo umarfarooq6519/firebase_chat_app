@@ -18,9 +18,12 @@ class CustomInputField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        hintStyle: TextStyle(
+          fontSize: 14,
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(17),
           borderSide: BorderSide(
             color: Theme.of(context).colorScheme.onSurface,
             width: 1,

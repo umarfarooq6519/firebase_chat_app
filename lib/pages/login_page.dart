@@ -53,14 +53,14 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Lottie.asset(
                   'assets/animations/chat_app_logo.json',
-                  width: 250,
-                  height: 250,
+                  width: 180,
+                  height: 180,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 0),
                 Text(
                   "Welcome Back 👋",
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 26,
                     height: 0,
                     fontFamily: 'Clash Display',
                     fontWeight: FontWeight.w600,
@@ -84,16 +84,30 @@ class _LoginPageState extends State<LoginPage> {
                     text: 'Continue',
                   ),
                 ),
-                Divider(
-                  indent: 30,
-                  endIndent: 30,
-                  height: 60,
+                Row(
+                  children: [
+                    Flexible(
+                      child: Divider(
+                        endIndent: 10,
+                        indent: 10,
+                        height: 50,
+                      ),
+                    ),
+                    Text('Or'),
+                    Flexible(
+                      child: Divider(
+                        indent: 10,
+                        endIndent: 10,
+                        height: 50,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   width: double.infinity,
                   child: GoogleBtn(),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -103,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),

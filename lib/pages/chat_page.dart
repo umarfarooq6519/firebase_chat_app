@@ -50,6 +50,7 @@ class ChatPage extends StatelessWidget {
                 child: _getMessageList(),
               ),
               _inputMsgField(context),
+              SizedBox(height: 5),
             ],
           ),
         ),

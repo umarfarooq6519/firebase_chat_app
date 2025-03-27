@@ -16,7 +16,7 @@ class PrimaryBtn extends StatelessWidget {
             Theme.of(context).colorScheme.primary,
           ),
           padding: WidgetStatePropertyAll(
-            EdgeInsets.symmetric(vertical: 15),
+            EdgeInsets.symmetric(vertical: 12),
           ),
           side: WidgetStatePropertyAll(
             BorderSide(
@@ -26,7 +26,7 @@ class PrimaryBtn extends StatelessWidget {
           ),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(17),
             ),
           ),
         ),
@@ -46,7 +46,7 @@ class PrimaryBtn extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: Provider.of<ThemeProvider>(context, listen: false)
                         .isDarkMode
                     ? Theme.of(context).colorScheme.surface

@@ -12,7 +12,7 @@ class GoogleBtn extends StatelessWidget {
     return OutlinedButton(
       style: ButtonStyle(
         padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 13),
+          EdgeInsets.symmetric(vertical: 10),
         ),
         side: WidgetStatePropertyAll(
           BorderSide(
@@ -22,7 +22,7 @@ class GoogleBtn extends StatelessWidget {
         ),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(17),
           ),
         ),
       ),
@@ -41,7 +41,7 @@ class GoogleBtn extends StatelessWidget {
           Text(
             'Continue with Google',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Theme.of(context).colorScheme.onSurface,
             ),
           ),

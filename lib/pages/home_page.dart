@@ -27,11 +27,17 @@ class _HomePageState extends State<HomePage> {
     userAvatar = _auth.currentUser!.photoURL;
   }
 
+  void handleSignOut(BuildContext context) async {
+    await _auth.signOut().then((_) => Navigator.pop(context));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      drawer: CustomDrawer(handleSignOut: _auth.signOut),
+      drawer: CustomDrawer(handleSignOut: () {
+        handleSignOut(context);
+      }),
       body: _displayUsersList(),
     );
   }
