@@ -38,92 +38,94 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    userEmail = FirebaseAuth.instance.currentUser?.email;
+    userEmail = _auth.currentUser?.email;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Lottie.asset(
-                  'assets/animations/chat_app_logo.json',
-                  width: 180,
-                  height: 180,
-                ),
-                SizedBox(height: 0),
-                Text(
-                  "Welcome Back 👋",
-                  style: TextStyle(
-                    fontSize: 26,
-                    height: 0,
-                    fontFamily: 'Clash Display',
-                    fontWeight: FontWeight.w600,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Lottie.asset(
+                    'assets/animations/chat_app_logo.json',
+                    width: 220,
+                    height: 220,
                   ),
-                ),
-                SizedBox(height: 20),
-                CustomInputField(
-                    controller: _emailController,
-                    hintText: 'E-mail',
-                    obscureText: false),
-                SizedBox(height: 10),
-                CustomInputField(
-                    controller: _passwordController,
-                    hintText: 'Password',
-                    obscureText: true),
-                SizedBox(height: 15),
-                SizedBox(
-                  width: double.infinity,
-                  child: PrimaryBtn(
-                    printEmail: handleSignUp,
-                    text: 'Continue',
+                  SizedBox(height: 0),
+                  Text(
+                    "Welcome Back 👋",
+                    style: TextStyle(
+                      fontSize: 26,
+                      height: 0,
+                      fontFamily: 'Clash Display',
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Flexible(
-                      child: Divider(
-                        endIndent: 10,
-                        indent: 10,
-                        height: 50,
-                      ),
+                  SizedBox(height: 20),
+                  CustomInputField(
+                      controller: _emailController,
+                      hintText: 'E-mail',
+                      obscureText: false),
+                  SizedBox(height: 10),
+                  CustomInputField(
+                      controller: _passwordController,
+                      hintText: 'Password',
+                      obscureText: true),
+                  SizedBox(height: 15),
+                  SizedBox(
+                    width: double.infinity,
+                    child: PrimaryBtn(
+                      printEmail: handleSignUp,
+                      text: 'Continue',
                     ),
-                    Text('Or'),
-                    Flexible(
-                      child: Divider(
-                        indent: 10,
-                        endIndent: 10,
-                        height: 50,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: GoogleBtn(),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Don\'t have an account? '),
-                    InkWell(
-                      onTap: widget.onToggle,
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Divider(
+                          endIndent: 10,
+                          indent: 10,
+                          height: 60,
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      Text('Or'),
+                      Flexible(
+                        child: Divider(
+                          indent: 10,
+                          endIndent: 10,
+                          height: 60,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: GoogleBtn(),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Don\'t have an account? '),
+                      InkWell(
+                        onTap: widget.onToggle,
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

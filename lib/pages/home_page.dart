@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void handleSignOut(BuildContext context) async {
-    await _auth.signOut().then((_) => Navigator.pop(context));
+    await _auth.signOut().then((_) => setState(() {}));
   }
 
   @override
