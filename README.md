@@ -1,10 +1,10 @@
-# Minimal Chat App
+# 📱Minimal Chat App
 
-Welcome to my chat app repository. This is a personal project of mine for learning flutter + firebase stack.
+👋 Welcome to my chat app repository. This is a personal project of mine for learning **flutter + firebase** stack.
 
 This project includes following functionalities:
 
-- User Authentication (Google and Email sign-up sign-in)
-- Chat Rooms (limited to 2 users for now)
-- Realtime messaging
--
+- Real-time messaging functionality.
+- Authentication integration (Google sign-in and email password).
+- Implemented user blocking and reporting, ensuring a secure experience.
+- Optimized performance with efficient Firestore queries and UI enhancements.
