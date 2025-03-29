@@ -4,7 +4,6 @@ import 'package:chat_app/services/auth.service.dart';
 import 'package:chat_app/widgets/google_btn.dart';
 import 'package:chat_app/widgets/custom_input_field.dart';
 import 'package:chat_app/widgets/primary_btn.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback onToggle;
@@ -49,82 +48,85 @@ class _LoginPageState extends State<LoginPage> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Lottie.asset(
-                    'assets/animations/chat_app_logo.json',
-                    width: 220,
-                    height: 220,
-                  ),
-                  SizedBox(height: 0),
-                  Text(
-                    "Welcome Back 👋",
-                    style: TextStyle(
-                      fontSize: 26,
-                      height: 0,
-                      fontFamily: 'Clash Display',
-                      fontWeight: FontWeight.w600,
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      'assets/animations/chat_app_logo.json',
+                      width: 220,
+                      height: 220,
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  CustomInputField(
-                      controller: _emailController,
-                      hintText: 'E-mail',
-                      obscureText: false),
-                  SizedBox(height: 10),
-                  CustomInputField(
-                      controller: _passwordController,
-                      hintText: 'Password',
-                      obscureText: true),
-                  SizedBox(height: 15),
-                  SizedBox(
-                    width: double.infinity,
-                    child: PrimaryBtn(
-                      printEmail: handleSignUp,
-                      text: 'Continue',
+                    SizedBox(height: 0),
+                    Text(
+                      "Welcome Back 👋",
+                      style: TextStyle(
+                        fontSize: 26,
+                        height: 0,
+                        fontFamily: 'Clash Display',
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Divider(
-                          endIndent: 10,
-                          indent: 10,
-                          height: 60,
-                        ),
+                    SizedBox(height: 20),
+                    CustomInputField(
+                        controller: _emailController,
+                        hintText: 'E-mail',
+                        obscureText: false),
+                    SizedBox(height: 10),
+                    CustomInputField(
+                        controller: _passwordController,
+                        hintText: 'Password',
+                        obscureText: true),
+                    SizedBox(height: 15),
+                    SizedBox(
+                      width: double.infinity,
+                      child: PrimaryBtn(
+                        printEmail: handleSignUp,
+                        text: 'Continue',
                       ),
-                      Text('Or'),
-                      Flexible(
-                        child: Divider(
-                          indent: 10,
-                          endIndent: 10,
-                          height: 60,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: GoogleBtn(),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Don\'t have an account? '),
-                      InkWell(
-                        onTap: widget.onToggle,
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                    ),
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Divider(
+                            endIndent: 10,
+                            indent: 10,
+                            height: 60,
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        Text('Or'),
+                        Flexible(
+                          child: Divider(
+                            indent: 10,
+                            endIndent: 10,
+                            height: 60,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: GoogleBtn(),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Don\'t have an account? '),
+                        InkWell(
+                          onTap: widget.onToggle,
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
